@@ -1,106 +1,67 @@
 #bloco 1 -------------------- 
 # Solicita ao usuário informe o tipo de equação que ele quer utilizar.
 print("Escolha a equação matemática que deseja realizar:")
-lista = ['Digite 1 para Somar;', 'Digite 2 para Subtrair;', 'Digite 3 para Dividir;', 'Digite 4 para Multiplicar.']
+lista = ['1 para Somar;', '2 para Subtrair;', '3 para Dividir;', '4 para Multiplicar;','5 para sair.']
 print("\n".join(lista))
 equacao = input("Digite aqui:")
 
-
 #bloco 2 --------------------
-#Verifica, valida e informa ao usuário a equação que ele selecionou
+#Pede para o usuário inserir um opção válida,  caso não tenha colocado
 desc_eq = ""
 tipo = ""
-if int(equacao) == 1:
-  desc_eq = "Você optou por Somar!"
-  tipo = "Somar"
-  print(desc_eq)
-if int(equacao) == 2:
-  desc_eq = "Você optou por Subtrair!"
-  tipo = "Subtrair"
-  print(desc_eq)
-if int(equacao) == 3:
-  desc_eq = "Você optou por Dividir!"
-  tipo = "Dividir"
-  print(desc_eq)
-if int(equacao) == 4:
-  desc_eq = "Você optou por Multiplicar!"
-  tipo = "Multiplicar"
-  print(desc_eq)
-if int(equacao) > 4:
-  desc_eq = "Erro!! - Você precisa digitar uma equação válida!"
-  print("\033[31m", desc_eq,"\033[0m")
-  vlr1 = 0
-  while int(equacao) > 4:
-    desc_eq = "Erro!! - Você precisa digitar uma equação válida!"
-    print("\033[31m", desc_eq,"\033[0m")
-    print("\n".join(lista))
-    equacao = input("Digite aqui:")
-
-    try:
-      if int(vlr1) == int:
-        vlr1 = int(vlr1)
-    except:
-        vlr1 = 0
-        print("\033[31mO valor digitado precisa ser um número!\033[0m")
-
-  print("\033[32mVálido!\033[0m")
+while int(equacao) > 5 or int(equacao) < 1:
+    if int(equacao) > 5 or int(equacao) < 1 :  
+      print('\033[35mDigite um valor válido de 1 a 5:\033[0m')
+      print("\n".join(lista))
+      equacao = input("Digite aqui:")
 
 #bloco 3 --------------------
-#Solicita ao usuário o primeiro valor da equção e verifica se é um valor válido
-vlr1 = 0
-vlr1 = input("Digite o primeiro valor:")
+#Trabalha os calculos exceto Divisão
+if int(equacao) <= 4:
+  print('\033[32mVálido!\033[0m')
+  if int(equacao) != 3:
+    print('Digite o primeiro valor numérico:') 
+    x = int(input())
+    print('Digite o Segundo valor numérico:') 
+    y = int(input())
 
-while isinstance(vlr1, str):
-    try:
-      if isinstance(int(vlr1), int):
-        if int(equacao) < 3:
-          vlr1 = int(vlr1)
-          print("\033[32mVálido!\033[0m")
-        else:
-          if int(equacao) > 2 and int(vlr1) > 0:
-            vlr1 = int(vlr1)
-            print("\033[32mVálido!\033[0m")
-          else:
-            print("\033[31mPara este tipo de equação valor tem que ser maior que zero!\033[0m")
-            vlr1 = input("Digite o primeiro valor:")
-    except:
-        print("\033[31mDigite um valor numérico!\033[0m")
-        vlr1 = input("Digite o primeiro valor:")
+    if int(equacao) == 1:
+      txt = 'Soma'
+      result = x + y
+      msg = "Soma = ", result
+    if int(equacao) == 2:
+      txt = 'Subtração'
+      result = x - y
+      msg = "Subtração = ", result
+    if int(equacao) == 4:
+      txt = 'Multiplicação'
+      result = x * y
+      msg = "Multiplicação = ", result
+
+#bloco 3 --------------------
+#Trabalha os calculos para Diviisão      
+  if int(equacao) == 3:
+    x = 0
+    while int(x) < 1:
+      print('\033[34mLembre-se que para duvisão o valor deve ser maior que zero!\033[0m')
+      print('Digite o primeiro valor numérico:') 
+      x = int(input())
+      
+    print('Digite o Segundo valor numérico:') 
+    y = int(input()) 
+           
+    txt = 'Divisão'
+    result = x / y
+    msg = "Multiplicação = ", result 
 
 #bloco 4 --------------------
-#Solicita ao usuário o segundo valor da equção e verifica se é um valor válido
-vlr2 = 0
-vlr2 = input("Digite o primeiro valor:")
+#Apresenta o resultado caso esteja tudo certo
+  print('Resultado da', txt,'=', float(result))
 
-while isinstance(vlr2, str):
-    try:
-      if isinstance(int(vlr2), int):
-        if int(equacao) < 3:
-          vl2 = int(vlr2)
-          print("\033[32mVálido!\033[0m")
-        else:
-          if int(equacao) > 2 and int(vlr2) > 0:
-            vlr2 = int(vlr2)
-            print("\033[32mVálido!\033[0m")
-          else:
-            print("\033[31mPara este tipo de equação valor tem que ser maior que zero!\033[0m")
-            vlr2 = input("Digite o primeiro valor:")
-    except:
-        print("\033[31mDigite um valor numérico!\033[0m")
-        vlr2 = input("Digite o primeiro valor:")
 
 #bloco 5 --------------------
-#Realiza a equação considerando a escolhida
-if int(equacao) == 1:
-  result = vlr1 + vlr2
-if int(equacao) == 2:
-  result = vlr1 - vlr2
-if int(equacao) == 3:
-  result = vlr1 / vlr2
-if int(equacao) * 3:
-  result = vlr1 / vlr2
+#informa ao usuário que ele optou por sair escolhendo a opção 5
+if int(equacao) == 5:
+  print('\033[35mVocê optou por sair!\033[0m')
 
-#bloco 6 --------------------
-#Apresenta o resultado
-print("Ao", tipo, "os valores apresentados encontrei o seguinte resultado:")
-print(float(result))
+  
